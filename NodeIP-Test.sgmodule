@@ -9,4 +9,4 @@
 NetInfoPanel = script-name=NetInfoPanel, title="{{{PANEL_TITLE}}}", content="点击刷新...", icon={{{ICON}}}, icon-color={{{ICON_COLOR}}}, update-interval={{{UPDATE_INTERVAL}}}
 
 [Script]
-NetInfoPanel = type=generic, timeout=20, script-path=NodeIP-Test.js, argument="group={{{GROUP}}}&PANEL_TITLE={{{PANEL_TITLE}}}&ICON={{{ICON}}}&ICON_COLOR={{{ICON_COLOR}}}&SHOW_NETWORK={{{SHOW_NETWORK}}}&SHOW_PROXY_ISP={{{SHOW_PROXY_ISP}}}&SHOW_LANDING={{{SHOW_LANDING}}}&SHOW_ATTR={{{SHOW_ATTR}}}&SHOW_SCORE={{{SHOW_SCORE}}}&SHOW_LOC={{{SHOW_LOC}}}&SHOW_TZ={{{SHOW_TZ}}}&SHOW_ASN={{{SHOW_ASN}}}&SHOW_REFRESH={{{SHOW_REFRESH}}}&MASK_IP={{{MASK_IP}}}"
+NetInfoPanel = type=generic, timeout=20, script-path=https://raw.githubusercontent.com/Qj521/Surge-Script/refs/heads/main/NodeIP-Test.js, argument="group={{{GROUP}}}&PANEL_TITLE={{{PANEL_TITLE}}}&ICON={{{ICON}}}&ICON_COLOR={{{ICON_COLOR}}}&SHOW_NETWORK={{{SHOW_NETWORK}}}&SHOW_PROXY_ISP={{{SHOW_PROXY_ISP}}}&SHOW_LANDING={{{SHOW_LANDING}}}&SHOW_ATTR={{{SHOW_ATTR}}}&SHOW_SCORE={{{SHOW_SCORE}}}&SHOW_LOC={{{SHOW_LOC}}}&SHOW_TZ={{{SHOW_TZ}}}&SHOW_ASN={{{SHOW_ASN}}}&SHOW_REFRESH={{{SHOW_REFRESH}}}&MASK_IP={{{MASK_IP}}}"
