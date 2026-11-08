@@ -1,0 +1,36 @@
+# > 玩偶哥哥
+DOMAIN,woggpan.888484.xyz
+DOMAIN-KEYWORD,wogg
+
+# > 木偶
+DOMAIN,www.muoua.top
+DOMAIN-SUFFIX,333291.xyz
+DOMAIN-SUFFIX,666291.xyz
+
+# > 蜡笔
+DOMAIN,fmao.fun
+DOMAIN,tvpanpan.site
+DOMAIN,www.mmpanpan.site
+DOMAIN-SUFFIX,xiaocgege.shop
+
+# > 多多
+DOMAIN,tv.214521.xyz
+DOMAIN-KEYWORD,yydsys
+
+# > 虎斑/小斑
+DOMAIN-KEYWORD,xhban
+IP-CIDR,103.40.14.172/32,no-resolve
+IP-CIDR,38.76.197.172/32,no-resolve
+
+# > 欧歌
+DOMAIN,woog.nxog.fun
+DOMAIN,woog.430520.xyz
+DOMAIN-SUFFIX,woog.nxog.eu.org
+
+# > 闪电
+DOMAIN,sd.sduc.site
+DOMAIN,shandian.blog
+
+# > 花卷
+DOMAIN,www.hjzhencai.top
+DOMAIN,www.huanjuanwp.shop
