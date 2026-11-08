@@ -1,0 +1,12 @@
+#!name=机场流量信息
+#!desc=最多 3 路订阅；有链接才显示；按剩余流量变色图标。订阅链接无需编码。
+#!category=Information
+#!system=ios
+#!arguments=TITLE:机场流量,URL1:请填写订阅链接1,NAME1:机场1,RESET1:0,URL2:请填写订阅链接2,NAME2:机场2,RESET2:0,URL3:请填写订阅链接3,NAME3:机场3,RESET3:0,ICON:externaldrive.fill.badge.icloud,UPDATE_INTERVAL:3600
+#!arguments-desc=参数说明：\n\n· TITLE：面板总标题\n· URL1 / URL2 / URL3：订阅链接（直接粘贴，无需编码）。占位文字或不填则不显示该路\n· NAME1 / NAME2 / NAME3：各路显示名称\n· RESET1 / RESET2 / RESET3：每月重置日，0=不显示重置倒计时\n· ICON：默认 SF Symbol（余量充足时使用）\n· UPDATE_INTERVAL：刷新间隔秒数\n\n图标逻辑：剩余≥50% 绿色；20%–50% 橙色；&lt;20% 红色。
+
+[Panel]
+SubInfoLocal = script-name=SubInfoLocal, title="{{{TITLE}}}", content="点击刷新...", icon={{{ICON}}}, icon-color=#34C759, update-interval={{{UPDATE_INTERVAL}}}
+
+[Script]
+SubInfoLocal = type=generic, timeout=25, script-path=Sub-info-Local.js, argument="title={{{TITLE}}}&icon={{{ICON}}}&url1={{{URL1}}}&name1={{{NAME1}}}&reset1={{{RESET1}}}&url2={{{URL2}}}&name2={{{NAME2}}}&reset2={{{RESET2}}}&url3={{{URL3}}}&name3={{{NAME3}}}&reset3={{{RESET3}}}"
