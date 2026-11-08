@@ -9,4 +9,4 @@
 SubInfoLocal = script-name=SubInfoLocal, title="{{{TITLE}}}", content="点击刷新...", icon={{{ICON}}}, icon-color=#34C759, update-interval={{{UPDATE_INTERVAL}}}
 
 [Script]
-SubInfoLocal = type=generic, timeout=25, script-path=Sub-info-Local.js, argument="title={{{TITLE}}}&icon={{{ICON}}}&url1={{{URL1}}}&name1={{{NAME1}}}&reset1={{{RESET1}}}&url2={{{URL2}}}&name2={{{NAME2}}}&reset2={{{RESET2}}}&url3={{{URL3}}}&name3={{{NAME3}}}&reset3={{{RESET3}}}"
+SubInfoLocal = type=generic, timeout=25, script-path=https://raw.githubusercontent.com/Qj521/Surge-Script/refs/heads/main/Sub-info-Local.js, argument="title={{{TITLE}}}&icon={{{ICON}}}&url1={{{URL1}}}&name1={{{NAME1}}}&reset1={{{RESET1}}}&url2={{{URL2}}}&name2={{{NAME2}}}&reset2={{{RESET2}}}&url3={{{URL3}}}&name3={{{NAME3}}}&reset3={{{RESET3}}}"
