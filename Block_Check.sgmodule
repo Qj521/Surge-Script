@@ -1,20 +1,12 @@
-#!name=流媒体解锁检测
-#!desc=检测 Netflix / Disney+ / YouTube Premium / ChatGPT 解锁情况 | 原作 RavelloH
-#!author=RavelloH
-#!icon=checkmark.shield.fill
-#!homepage=https://gist.github.com/RavelloH/383354955aa3800e1d7e98666e11e16f
-#!openUrl=https://gist.github.com/RavelloH/383354955aa3800e1d7e98666e11e16f
+#!name=解锁检测 Fix
+#!desc=Surge 专用修复版
+#!author=Fix by AI
 
 [Panel]
-流媒体解锁检测 = script-name=Block_Check, title="🌍 解锁检测", content="点击刷新检测", style=info, script-path=https://gist.githubusercontent.com/RavelloH/383354955aa3800e1d7e98666e11e16f/raw/block_check.js, update-interval=86400
+解锁检测 = script-name=BlockCheck, title="解锁检测", content="正在检测...", style=info, script-path=https://raw.githubusercontent.com/RavelloH/Block-Check/main/block_check.js
 
 [Script]
-流媒体解锁检测 = type=generic, timeout=30, script-path=https://gist.githubusercontent.com/RavelloH/383354955aa3800e1d7e98666e11e16f/raw/block_check.js, argument=title=🌍 解锁检测&icon=checkmark.shield.fill&color=#FF6B6B
+BlockCheck = type=generic, timeout=20, script-path=https://raw.githubusercontent.com/RavelloH/Block-Check/main/block_check.js, argument=title=解锁检测&icon=star.fill
 
-[Argument]
-# 面板标题
-title = 🌍 解锁检测
-# 图标
-icon = checkmark.shield.fill
-# 颜色
-color = #FF6B6B
+[MITM]
+hostname = %APPEND% www.youtube.com, www.netflix.com, disney.api.edge.bamgrid.com, api.openai.com
