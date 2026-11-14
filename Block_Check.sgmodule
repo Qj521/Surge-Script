@@ -1,0 +1,20 @@
+#!name=流媒体解锁检测
+#!desc=检测 Netflix / Disney+ / YouTube Premium / ChatGPT 解锁情况 | 原作 RavelloH
+#!author=RavelloH
+#!icon=checkmark.shield.fill
+#!homepage=https://gist.github.com/RavelloH/383354955aa3800e1d7e98666e11e16f
+#!openUrl=https://gist.github.com/RavelloH/383354955aa3800e1d7e98666e11e16f
+
+[Panel]
+流媒体解锁检测 = script-name=Block_Check, title="🌍 解锁检测", content="点击刷新检测", style=info, script-path=https://gist.githubusercontent.com/RavelloH/383354955aa3800e1d7e98666e11e16f/raw/block_check.js, update-interval=86400
+
+[Script]
+流媒体解锁检测 = type=generic, timeout=30, script-path=https://gist.githubusercontent.com/RavelloH/383354955aa3800e1d7e98666e11e16f/raw/block_check.js, argument=title=🌍 解锁检测&icon=checkmark.shield.fill&color=#FF6B6B
+
+[Argument]
+# 面板标题
+title = 🌍 解锁检测
+# 图标
+icon = checkmark.shield.fill
+# 颜色
+color = #FF6B6B
