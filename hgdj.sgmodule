@@ -6,19 +6,34 @@
 #!category=去广告
 
 [Rule]
-# 广告签名图
+# ========== 红果/番茄 正片优先直连（放最前面） ==========
+DOMAIN-SUFFIX,qznovelvod.com,DIRECT
+DOMAIN-SUFFIX,fqnovelvod.com,DIRECT
+DOMAIN-SUFFIX,fqnovelpic.com,DIRECT
+DOMAIN-SUFFIX,hongguo.com,DIRECT
+DOMAIN-SUFFIX,hongguo.douyin.com,DIRECT
+DOMAIN-SUFFIX,pstatp.com,DIRECT
+DOMAIN-SUFFIX,byteimg.com,DIRECT
+
+# ========== 广告域名拦截 ==========
+# 广告签名
 DOMAIN,p6-ad-sign.byteimg.com,REJECT
 DOMAIN,p9-ad-sign.byteimg.com,REJECT
 DOMAIN-KEYWORD,-ad-sign.byteimg.com,REJECT
 
-# 穿山甲 / Pangle
+# 穿山甲
 DOMAIN-KEYWORD,pangolin,REJECT
 DOMAIN-SUFFIX,pglstatp-toutiao.com,REJECT
 DOMAIN-SUFFIX,pglstatp-toutiao-b.com,REJECT
 DOMAIN-SUFFIX,ad.pangle.cn,REJECT
 DOMAIN-SUFFIX,ad.pangolin.cn,REJECT
 
-# 埋点 / 广告相关域名
+# 字节广告 API（重点加强）
+DOMAIN-REGEX,^ads[0-9]+-normal(-[a-z]+)?\.zijieapi\.com$,REJECT
+DOMAIN-KEYWORD,ads-normal,REJECT
+DOMAIN-KEYWORD,zijieapi,REJECT
+
+# 其他广告/埋点
 DOMAIN,dig.bdurl.net,REJECT
 DOMAIN,activity-ag.awemeughun.com,REJECT
 DOMAIN,mcs.snssdk.com,REJECT
@@ -29,26 +44,15 @@ DOMAIN,i.snssdk.com,REJECT
 DOMAIN,i-lq.snssdk.com,REJECT
 DOMAIN,is.snssdk.com,REJECT
 DOMAIN,v6-novelapp.ixigua.com,REJECT
-DOMAIN-KEYWORD,zijieapi,REJECT
 DOMAIN-KEYWORD,ad-union-sdk,REJECT
 DOMAIN-KEYWORD,hongguo.ad,REJECT
 DOMAIN-KEYWORD,tnc.snssdk,REJECT
-
-DOMAIN-SUFFIX,pglstatp-toutiao.com,REJECT
 DOMAIN-SUFFIX,byteorge.com,REJECT
 DOMAIN-SUFFIX,bytegoofy.com,REJECT
 DOMAIN-SUFFIX,hongguoapp.com,REJECT
 DOMAIN-SUFFIX,hongguosdk.com,REJECT
-DOMAIN-SUFFIX,zijieapi.com,REJECT
-
-# 白名单（正片/图床）
-DOMAIN-SUFFIX,hongguo.com,DIRECT
-DOMAIN-SUFFIX,hongguo.douyin.com,DIRECT
-DOMAIN-SUFFIX,pstatp.com,DIRECT
-DOMAIN-SUFFIX,byteimg.com,DIRECT
 
 [Map Local]
-# 返回空 JSON，比直接 reject 更稳，减少 SDK 重试
 ^https?:\/\/[^\/]*pangolin-sdk-toutiao[^\/]*\/api\/ad\/union\/sdk\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 ^https?:\/\/[^\/]*\.snssdk\.com\/api\/ad\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
