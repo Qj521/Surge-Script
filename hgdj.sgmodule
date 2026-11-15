@@ -1,0 +1,37 @@
+#!name=番茄小说+红果短剧去广告 Fix
+#!desc=修复时不时失效/需重启问题，合并解锁+去广告
+#!author=merged Fix
+#!homepage=https://github.com/Qj521/Egern
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reading.png
+
+[Script]
+# 核心解锁，必须加这个，不然纯REJECT会被风控
+红果解锁请求 = type=http-request,pattern=^https?://.*(hongguo|fanqie|snssdk|byteoversea).* ,script-path=https://raw.githubusercontent.com/Qj521/Loon/main/hg+fq/hg+fq.js,requires-body=1,timeout=20
+红果解锁响应 = type=http-response,pattern=^https?://.*(hongguo|fanqie|snssdk|byteoversea).* ,script-path=https://raw.githubusercontent.com/Qj521/Loon/main/hg+fq/hg+fq.js,requires-body=1,timeout=20
+
+[Rule]
+# 你的原规则保留，精简了一下，太多的REJECT会误杀正片
+DOMAIN-SUFFIX,ad.pangle.cn,REJECT
+DOMAIN-SUFFIX,ad.pangolin.cn,REJECT
+DOMAIN-SUFFIX,pglstatp-toutiao.com,REJECT
+DOMAIN-SUFFIX,bytegoofy.com,REJECT
+DOMAIN,p6-ad-sign.byteimg.com,REJECT
+DOMAIN,p9-ad-sign.byteimg.com,REJECT
+DOMAIN,dig.bdurl.net,REJECT
+DOMAIN,activity-ag.awemeughun.com,REJECT
+DOMAIN-KEYWORD,zijieapi,REJECT
+# 关键：正片必须放行，不能REJECT
+DOMAIN-SUFFIX,hongguo.com,DIRECT
+DOMAIN-SUFFIX,fanqie.com,DIRECT
+DOMAIN-SUFFIX,snssdk.com,DIRECT
+DOMAIN-SUFFIX,byteimg.com,DIRECT
+DOMAIN-SUFFIX,pstatp.com,DIRECT
+
+[Rewrite]
+^https?:\/\/.+\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/(get_ads|stats|settings)\/ url reject
+^https?:\/\/.+\.pglstatp-toutiao\.com\/.+\/toutiao\.mp4 url reject
+^https?:\/\/.+\.(pglstatp-toutiao|pstatp)\.com\/(obj|img)\/(ad-app-package|ad)\/.+ url reject
+^https?:\/\/.+\.snssdk.com\/api\/ad\/.+ url reject
+
+[MITM]
+hostname = %APPEND% *.pangolin-sdk-toutiao.com, *.pstatp.com, *.pglstatp-toutiao.com, gurd.snssdk.com, *.hongguo.com, *.fanqie.com, *.snssdk.com, *.byteoversea.com, *.hg-api.com, *.fq-api.com
