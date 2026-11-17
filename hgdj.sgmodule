@@ -1,12 +1,28 @@
 #!name=番茄小说+红果短剧去广告
-#!desc=番茄小说 + 红果短剧广告拦截（Surge 优化版）
+#!desc=番茄小说 + 红果短剧广告拦截（安全版）
 #!author=merged
-#!homepage=https://github.com/Qj521/Egern
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reading.png
 #!category=去广告
 
 [Rule]
-# ========== 红果/番茄 正片优先直连（放最前面） ==========
+# 明确的广告域名先拦，避免被后面的 CDN 直连规则覆盖
+DOMAIN,p6-ad-sign.byteimg.com,REJECT
+DOMAIN,p9-ad-sign.byteimg.com,REJECT
+DOMAIN-KEYWORD,-ad-sign.byteimg.com,REJECT
+DOMAIN-KEYWORD,pangolin,REJECT
+DOMAIN-SUFFIX,pglstatp-toutiao.com,REJECT
+DOMAIN-SUFFIX,pglstatp-toutiao-b.com,REJECT
+DOMAIN-SUFFIX,ad.pangle.cn,REJECT
+DOMAIN-SUFFIX,ad.pangolin.cn,REJECT
+DOMAIN-KEYWORD,ads-normal,REJECT
+DOMAIN,dig.bdurl.net,REJECT
+DOMAIN,activity-ag.awemeughun.com,REJECT
+DOMAIN-KEYWORD,ad-union-sdk,REJECT
+DOMAIN-KEYWORD,hongguo.ad,REJECT
+DOMAIN-SUFFIX,byteorge.com,REJECT
+DOMAIN-SUFFIX,bytegoofy.com,REJECT
+
+# 红果/番茄正文与 CDN
 DOMAIN-SUFFIX,qznovelvod.com,DIRECT
 DOMAIN-SUFFIX,fqnovelvod.com,DIRECT
 DOMAIN-SUFFIX,fqnovelpic.com,DIRECT
@@ -14,61 +30,3 @@ DOMAIN-SUFFIX,hongguo.com,DIRECT
 DOMAIN-SUFFIX,hongguo.douyin.com,DIRECT
 DOMAIN-SUFFIX,pstatp.com,DIRECT
 DOMAIN-SUFFIX,byteimg.com,DIRECT
-
-# ========== 广告域名拦截 ==========
-# 广告签名
-DOMAIN,p6-ad-sign.byteimg.com,REJECT
-DOMAIN,p9-ad-sign.byteimg.com,REJECT
-DOMAIN-KEYWORD,-ad-sign.byteimg.com,REJECT
-
-# 穿山甲
-DOMAIN-KEYWORD,pangolin,REJECT
-DOMAIN-SUFFIX,pglstatp-toutiao.com,REJECT
-DOMAIN-SUFFIX,pglstatp-toutiao-b.com,REJECT
-DOMAIN-SUFFIX,ad.pangle.cn,REJECT
-DOMAIN-SUFFIX,ad.pangolin.cn,REJECT
-
-# 字节广告 API（重点加强）
-DOMAIN-REGEX,^ads[0-9]+-normal(-[a-z]+)?\.zijieapi\.com$,REJECT
-DOMAIN-KEYWORD,ads-normal,REJECT
-DOMAIN-KEYWORD,zijieapi,REJECT
-
-# 其他广告/埋点
-DOMAIN,dig.bdurl.net,REJECT
-DOMAIN,activity-ag.awemeughun.com,REJECT
-DOMAIN,mcs.snssdk.com,REJECT
-DOMAIN,tnc3-alisc1.snssdk.com,REJECT
-DOMAIN,security-lq.snssdk.com,REJECT
-DOMAIN,tnc3-aliec2.snssdk.com,REJECT
-DOMAIN,i.snssdk.com,REJECT
-DOMAIN,i-lq.snssdk.com,REJECT
-DOMAIN,is.snssdk.com,REJECT
-DOMAIN,v6-novelapp.ixigua.com,REJECT
-DOMAIN-KEYWORD,ad-union-sdk,REJECT
-DOMAIN-KEYWORD,hongguo.ad,REJECT
-DOMAIN-KEYWORD,tnc.snssdk,REJECT
-DOMAIN-SUFFIX,byteorge.com,REJECT
-DOMAIN-SUFFIX,bytegoofy.com,REJECT
-DOMAIN-SUFFIX,hongguoapp.com,REJECT
-DOMAIN-SUFFIX,hongguosdk.com,REJECT
-
-[Map Local]
-^https?:\/\/[^\/]*pangolin-sdk-toutiao[^\/]*\/api\/ad\/union\/sdk\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-^https?:\/\/[^\/]*\.snssdk\.com\/api\/ad\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-
-[URL Rewrite]
-^https?:\/\/.+\.pglstatp-toutiao\.com\/.+\/toutiao\.mp4 - reject
-^https?:\/\/.+\.(pglstatp-toutiao|pstatp)\.com\/(obj|img)\/(ad-app-package|ad)\/.+ - reject
-^https?:\/\/.+\.(pglstatp-toutiao|pstatp)\.com\/(obj|img)\/web\.business\.image\/.+ - reject
-^https?:\/\/.+\.(pglstatp-toutiao|pstatp)\.com\/obj\/ad-pattern\/renderer - reject
-^https?:\/\/gurd\.snssdk\.com\/src\/server\/v3\/package - reject
-^https?:\/\/.+\.byteimg\.com\/tos-cn-i-1yzifmftcy\/(.+)-jpeg\.jpeg - reject
-^https?:\/\/.+\.pstatp\.com\/obj\/mosaic-legacy\/.+\?from\=ad - reject
-^https?:\/\/.+\.pstatp\.com\/bytecom\/resource\/track-log\/src\/.+ - reject
-^https?:\/\/.+\.snssdk\.com\/video\/play\/1\/toutiao\/.+\/mp4 - reject
-^http:\/\/.+\.byteimg\.com\/ad-app-package - reject
-^http:\/\/.+\.byteimg\.com\/web\.business\.image - reject
-^https?:\/\/.+?\.snssdk\.com\/motor\/operation\/activity\/display\/config\/V2\/ - reject
-
-[MITM]
-hostname = %APPEND% *.pangolin-sdk-toutiao.com, *.pangolin-sdk-toutiao-b.com, *.pangolin-sdk-toutiao1.com, *.pstatp.com, *.pglstatp-toutiao.com, gurd.snssdk.com, *.snssdk.com, *default.ixigua.com
